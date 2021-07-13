@@ -3,7 +3,7 @@ import React, {Component} from "react";
 export default class ImgTextContainer extends Component{
     render(){
         return(
-            <div className="card">
+            <div className="card card--medium">
                 <img className="containerImage containerImage--text" src={this.props.link}/>
                 <p>
                     Status: <br />

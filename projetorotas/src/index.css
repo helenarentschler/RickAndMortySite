@@ -14,6 +14,7 @@ code {
 
 .grid {
   display: flex;
+  justify-content: center;
 }
 
 .containerImage, .containerImage--text{
@@ -21,25 +22,33 @@ code {
 }
 
 .containerImage--text{
-  padding-right: 60px;
+  padding-right: 50px;
 }
 
-.card, .card--small {
+.card, .card--small, .card.medium {
   border: 2px solid #dfdfe0;
   padding: 20px;
   margin-left: 20px;
   display: flex;
-  justify-content: center;
 }
 
 .card--small {
   width: 24.999% !important;
   height: 60px !important;
+  justify-content: left !important;
+}
+
+.card--medium {
+  width: 500px !important;
+  height: 250px !important;
+  padding-left: 50px;
+  justify-content: left !important;
 }
 
 .card {
   width: 800px;
   height: 200px;
+  justify-content: center;
 }
 
 .card--noBorder{
