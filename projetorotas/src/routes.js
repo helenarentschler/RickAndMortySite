@@ -9,11 +9,10 @@ export default class Routes extends Component{
         return(
             <BrowserRouter>
                 <Switch>
-                    <Route path="/">
-                        <Link to={"/character"}>character</Link>
+                    <Route exact path="/">
+                        <Home />
                     </Route>
                     <Route path="/character">
-                        <Link to={"/"}>home</Link>
                         <Character />
                     </Route>
                 </Switch>

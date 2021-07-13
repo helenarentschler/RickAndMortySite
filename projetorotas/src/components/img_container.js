@@ -8,4 +8,5 @@ export default class ImgContainer extends Component{
             </div>
         );
     }
+
 }
