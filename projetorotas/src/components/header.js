@@ -5,7 +5,7 @@ export default class Header extends Component{
         return(
             <div>
                 <h1 className="title">
-                    Rick and Morty
+                     {this.props.name}
                 </h1>
             </div>
         );

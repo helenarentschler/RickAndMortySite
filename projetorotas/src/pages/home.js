@@ -1,15 +1,17 @@
 import React, {Component} from "react";
+import {Link} from "react-router-dom";
+
 import Header from "./../components/header";
 import ImgContainer from "./../components/img_container";
-import LocationContainer from "./../components/location_container";
-
+import SmallContainer from "./../components/small_container";
 export default class Home extends Component{
     render(){
         return(
             <div>
-                <Header />
+                <Header name="Rick and Morty"/>
                 <div className="searchBar">
                     <input type="text" id="lname" name="lname" placeholder="search character"/>
+                    <Link to="/character">Character</Link> 
                 </div>
                 <div className="grid row">
                     <div className="card card--noBorder card--noPaddingTop">
@@ -21,11 +23,11 @@ export default class Home extends Component{
                     <ImgContainer link="https://www.freepnglogos.com/uploads/rick-and-morty-png/rick-and-morty-morty-close-transparent-png-stickpng-3.png"/>
                 </div>
                 <div className="grid row">
-                    <LocationContainer />
-                    <LocationContainer />
-                    <LocationContainer />
-                    <LocationContainer />
-                    <LocationContainer />
+                    <SmallContainer texta="Location: " textb="Dimention: "/>
+                    <SmallContainer texta="Location: " textb="Dimention: "/>
+                    <SmallContainer texta="Location: " textb="Dimention: "/>
+                    <SmallContainer texta="Location: " textb="Dimention: "/>
+                    <SmallContainer texta="Location: " textb="Dimention: "/>
                 </div>
             </div>
         );

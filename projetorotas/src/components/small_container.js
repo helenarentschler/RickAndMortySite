@@ -1,15 +1,13 @@
 import React, {Component} from "react";
-
-export default class LocationContainer extends Component{
+export default class SmallContainer extends Component{
     render(){
         return(
             <div className="card card--small">
                 <p>
-                    Location Name
-                    Dimension
+                    {this.props.texta}<br/>
+                    {this.props.textb}
                 </p>
             </div>
         );
     }
-
 }
