@@ -1,18 +1,41 @@
 import React, {Component} from "react";
 import {Link} from "react-router-dom";
+import axios from "axios";
 
 import Header from "./../components/header";
 import ImgContainer from "./../components/img_container";
 import SmallContainer from "./../components/small_container";
+
+
+
+const api = axios.create({
+    baseURL: "https://rickandmortyapi.com/api"
+
+});
+
 export default class Home extends Component{
+    state = {
+        locations: []
+    }
+    constructor(){
+        super();
+        api.get("https://rickandmortyapi.com/api/location").then(res =>{
+            console.log("constructorget", res.data)
+            console.log("state", this.state.locations)
+            this.setState({locations: res.data.results})
+        }) 
+    }
     render(){
         return(
             <div>
                 <Header name="Rick and Morty"/>
                 <div className="searchBar">
-                    <input type="text" id="lname" name="lname" placeholder="search character"/>
-                    <Link to="/character">Character</Link> 
+                    <form action="/character">
+                        <input type="text" id="lname" name="lname" placeholder="search character"/> 
+                        <button type="submit">pesquisar</button>
+                    </form>       
                 </div>
+                <Link to="/character">Character</Link> 
                 <div className="grid row">
                     <div className="card card--noBorder card--noPaddingTop">
                         <p>
@@ -23,11 +46,10 @@ export default class Home extends Component{
                     <ImgContainer link="https://www.freepnglogos.com/uploads/rick-and-morty-png/rick-and-morty-morty-close-transparent-png-stickpng-3.png"/>
                 </div>
                 <div className="grid row">
-                    <SmallContainer texta="Location: " textb="Dimention: "/>
-                    <SmallContainer texta="Location: " textb="Dimention: "/>
-                    <SmallContainer texta="Location: " textb="Dimention: "/>
-                    <SmallContainer texta="Location: " textb="Dimention: "/>
-                    <SmallContainer texta="Location: " textb="Dimention: "/>
+                    {console.log("statefinal", this.state.locations)}
+                    {this.state.locations.map(location =>
+                        <SmallContainer texta= {'Location: '+ location.name} textb={'Dimention: '+ location.dimention}/>
+                        )}    
                 </div>
             </div>
         );

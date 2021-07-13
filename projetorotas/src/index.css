@@ -45,6 +45,11 @@ code {
   justify-content: left !important;
 }
 
+.cardP {
+  display: block;
+  text-align: left;
+}
+
 .card {
   width: 800px;
   height: 200px;
