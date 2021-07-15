@@ -12,7 +12,6 @@ const api = axios.create({
     baseURL: "https://rickandmortyapi.com/api"
 });
 
-
 export default class Character extends Component{
 
     constructor(){
@@ -35,22 +34,35 @@ export default class Character extends Component{
             }
             console.log(res)
             console.log(res.data)
-            res.data.episode.forEach(episode =>{
-                api.get(episode).then(res =>{
-                    console.log("res", res)
-                    this.state.episodes.push(res)
-                })
-            })    
-        this.setState({
-            ...this.state,
-            ...res.data
-        })
-        console.log("thistate", this.state)
+            
+            let requests = res.data.episode.map((episode) => { 
+                return new Promise((resolve, reject) => {
+                    requests({
+                        api.get(episode).then(res =>{
+                        console.log("res", res.data)
+                    },
+                    (err, res, body) => {
+                        if (err) { reject(err) }
+                    })
+                })  
+                Promise.all(requests).then((body) => { 
+                    body.forEach(res => {
+                        if (res)
+                            this.state.episodes.push(res.data)
+                    })
+                }).catch(err => console.log(err))
+            })
+            
+            this.setState({
+                ...this.state,
+                ...promises
+             })
+            console.log("episodes", this.state.episodes)
+            
         } catch(err) {
             console.log(err);
         }
     }
-
 
     render() {
         return(
@@ -65,11 +77,11 @@ export default class Character extends Component{
                     <ImgTextContainer Link={this.state.image} textc={'Status: ' + this.state.status} textd={'Species: ' + this.state.species}/>                
                 </div>
                 <div className="grid row">
-                    {console.log("statefinal", this.state.episodes)}   
-                    {this.state.episodes.map((episode) => {
-                        console.log("episode", episode)
-                        console.log("state", this.state)
-                        <SmallContainer texta={'Episode: ' + episode.episode} textb={'Name: ' + episode.name}/>
+                    {console.log("stateee", this.state.episodes)}   
+                    {this.state.episodes.map((ep) => {
+                        console.log("episode", ep)
+                        console.log("state", this.state);
+                        <SmallContainer texta={'Episode: ' + ep.episode} textb={'Name: ' + ep.name}/>
                         } 
                     )}    
                 </div>

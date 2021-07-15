@@ -15,6 +15,7 @@ export default class Home extends Component{
     state = {
         locations: []
     }
+
     constructor(){
         super();
         api.get("https://rickandmortyapi.com/api/location").then(res =>{
@@ -23,6 +24,7 @@ export default class Home extends Component{
             this.setState({locations: res.data.results})
         }) 
     }
+    
     render(){
         return(
             <div>
