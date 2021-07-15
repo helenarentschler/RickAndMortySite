@@ -1,7 +1,6 @@
 import React, {Component} from "react";
 import {Link} from "react-router-dom";
 import axios from "axios";
-
 import Header from "./../components/header";
 import ImgContainer from "./../components/img_container";
 import SmallContainer from "./../components/small_container";
@@ -10,7 +9,6 @@ import SmallContainer from "./../components/small_container";
 
 const api = axios.create({
     baseURL: "https://rickandmortyapi.com/api"
-
 });
 
 export default class Home extends Component{
